@@ -1,8 +1,3 @@
-//  chai : une bibliothèque d'assertions
-// chai-http : pour effectue les demandes http reélles ûis test les réponses
-// describe pour regroper les tests
-//   it() pour contenir chaque cas de test
-
 process.env.NODE_ENV = "test";
 
 let mongoose = require("mongoose");
@@ -43,8 +38,6 @@ describe("testing Api REST for router /users", () => {
       .request(server)
       .get("/users")
       .end((err, res) => {
-        console.log("ma response : ", res);
-
         res.should.have.status(200);
         res.type.should.equal("application/json");
         res.body.should.be.a("array");
@@ -129,7 +122,7 @@ describe("testing Api REST for router /users", () => {
         chai
           .request(server)
           .put("/users/" + res.body[0]._id)
-          .send({ firstName: "firstName1" })
+          .send({ firstName: "firstName2" })
           .end((error, response) => {
             response.should.have.status(200);
             response.should.be.json;
@@ -137,7 +130,7 @@ describe("testing Api REST for router /users", () => {
             response.body.should.be.a("object");
             response.body.should.have.property("firstName");
             response.body.should.have.property("_id");
-            response.body.firstName.should.equal("firstName1");
+            response.body.firstName.should.equal("firstName2");
             done();
           });
       });
