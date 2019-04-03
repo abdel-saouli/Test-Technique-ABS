@@ -78,7 +78,6 @@ describe("testing Api REST for router /users", () => {
           res.body.firstName.should.be.equal("firstName2");
           res.body.lastName.should.be.equal("lastName2");
           res.body.username.should.be.equal("username2");
-          res.body.password.should.be.equal("test");
           done();
         });
     });
@@ -109,7 +108,6 @@ describe("testing Api REST for router /users", () => {
         res.body.firstName.should.equal("firstName3");
         res.body.lastName.should.equal("lastName3");
         res.body.username.should.equal("username3");
-        res.body.password.should.equal("test");
         done();
       });
   });
