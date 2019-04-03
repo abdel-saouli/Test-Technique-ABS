@@ -1,11 +1,9 @@
 import React, { useState, useCallback } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import "./login.css";
-// import logo from "./logo.svg";
 import { loginAction } from "../../redux/actions/login.Action";
 import { useDispatch, useMappedState } from "redux-react-hook";
 
-// définit un useInput pérsonnalisé
 const useInput = initValue => {
   const [value, setValue] = useState(initValue);
   const [valid, setValid] = useState(false);
@@ -24,7 +22,6 @@ const useInput = initValue => {
   };
 };
 
-// defiend validator of form
 const validForm = (arg = []) => {
   if (arg.length !== 0 && !arg.includes(false)) {
     return true;
@@ -38,15 +35,13 @@ const mapState = state => {
   };
 };
 
-// définit le component Login
 const Login = () => {
   const username = useInput("");
   const password = useInput("");
   const [submit, setSubmit] = useState(false);
 
-  const Dispatch = useDispatch(); //remplace mapDispatchToProps()
+  const Dispatch = useDispatch();
   const { isLogin } = useMappedState(mapState);
-  console.log("isLogin est : ", isLogin);
 
   const onSubmit = useCallback(() => {
     setSubmit(true);
@@ -64,7 +59,6 @@ const Login = () => {
     } catch (e) {
       console.log({ e });
     }
-    console.log("ma response : ", user);
   }, [username.value, password.value]);
 
   return isLogin ? (
@@ -72,9 +66,7 @@ const Login = () => {
   ) : (
     <>
       <div className="login">
-        <div className="logItem">
-          {/* <img src={logo} style={{ width: 250 }} alt="logo" /> */}
-        </div>
+        <div className="logItem" />
 
         <div className="logItem">
           <label htmlFor="username">Username</label>
@@ -117,5 +109,4 @@ const Login = () => {
   );
 };
 
-// export default Login;
 export default Login;
