@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ErrorBoundary from "react-error-boundary";
 import Navbar from "./component/navbar/navbar";
+let Register = React.lazy(() => import("./component/register/register"));
 let Login = React.lazy(() => import("./component/login/login"));
 let Product = React.lazy(() => import("./component/product/product"));
 let Home = React.lazy(() => import("./component/home/home"));
@@ -19,6 +20,7 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/Product" component={Product} />
+                <Route exact path="/register" component={Register} />
                 <Route component={NoMatch} />
               </Switch>
             </React.Suspense>

@@ -3,6 +3,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import "./login.css";
 import { loginAction } from "../../redux/actions/login.Action";
 import { useDispatch, useMappedState } from "redux-react-hook";
+import PropTypes from "prop-types";
 
 const useInput = initValue => {
   const [value, setValue] = useState(initValue);
@@ -10,7 +11,16 @@ const useInput = initValue => {
   const handelChange = event => {
     let { value } = event.target;
     setValue(value);
-    setValid(value.length > 0 ? true : false);
+    setValid(
+      !(
+        value === undefined ||
+        value === null ||
+        (typeof value === "object" && Object.keys(value).length === 0) ||
+        (typeof value === "string" && value.trim().length === 0)
+      )
+        ? true
+        : false
+    );
   };
 
   return {
@@ -43,30 +53,37 @@ const Login = () => {
   const Dispatch = useDispatch();
   const { isLogin } = useMappedState(mapState);
 
-  const onSubmit = useCallback(() => {
-    setSubmit(true);
+  const onSubmit = useCallback(
+    event => {
+      event.preventDefault();
+      setSubmit(true);
 
-    if (!validForm([username.valid, password.valid])) {
-      return;
-    }
-    let user = {
-      username: username.value,
-      password: password.value
-    };
+      if (!validForm([username.valid, password.valid])) {
+        return;
+      }
+      let user = {
+        username: username.value,
+        password: password.value
+      };
 
-    try {
-      Dispatch(loginAction(user));
-    } catch (e) {
-      console.log({ e });
-    }
-  }, [username.value, password.value]);
+      try {
+        Dispatch(loginAction(user));
+      } catch (e) {
+        console.log({ e });
+      }
+    },
+    [username.value, password.value]
+  );
+  console.log(Login.children);
 
   return isLogin ? (
     <Redirect to="/product" />
   ) : (
     <>
-      <div className="login">
-        <div className="logItem" />
+      <form className="login" onSubmit={onSubmit}>
+        <div className="logItem">
+          <h2>Authenticate</h2>
+        </div>
 
         <div className="logItem">
           <label htmlFor="username">Username</label>
@@ -86,8 +103,8 @@ const Login = () => {
           <label htmlFor="username">Password</label>
           <input
             type="password"
+            placeholder="Password"
             name="password"
-            placeholder="password"
             value={password.value}
             onChange={password.handelChange}
           />
@@ -97,16 +114,25 @@ const Login = () => {
         </div>
 
         <div className="logItem">
-          <button style={{ backgroundColor: "LightGrey" }} onClick={onSubmit}>
+          <button style={{ backgroundColor: "LightGrey" }} type="submit">
             Submit
           </button>
           <br />
           <br />
-          <NavLink to="forget">Forget Password</NavLink>
+          <NavLink to="forget" style={{ float: "left" }}>
+            Forget Password
+          </NavLink>
+          <NavLink to="/register" style={{ float: "right" }}>
+            Reister
+          </NavLink>
         </div>
-      </div>
+      </form>
     </>
   );
+};
+
+Login.propTypes = {
+  loginAction: PropTypes.func
 };
 
 export default Login;

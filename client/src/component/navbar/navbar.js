@@ -3,36 +3,74 @@ import "./navbar.css";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useMappedState } from "redux-react-hook";
 import { logoutRequest } from "../../redux/actions/login.Action";
+import PropTypes from "prop-types";
 
 const mapState = state => {
   return {
-    isLogin: state.loginRducer.isLogin
+    isLogin: state.loginRducer.isLogin,
+    firstName: state.loginRducer.user.firstName
   };
 };
 
 const Navbar = () => {
-  let { isLogin } = useMappedState(mapState);
-  const dispatch = useDispatch();
+  let { isLogin, firstName } = useMappedState(mapState);
+  const Dispatch = useDispatch();
   const logout = () => {
-    dispatch(logoutRequest());
+    Dispatch(logoutRequest());
   };
-
   return (
     <div className="navbar">
-      <NavLink className="navItem" to="/login">
-        Login
-      </NavLink>
-      <NavLink className="navItem" to="/">
-        Home
-      </NavLink>
-      <NavLink className="navItem" to="/product">
-        product
-      </NavLink>
-      <NavLink className="navItem" to="/" onClick={logout}>
-        Logout
-      </NavLink>
+      {!isLogin ? (
+        <>
+          <NavLink
+            className="navItem"
+            to="/login"
+            activeStyle={{
+              fontWeight: "bold",
+              color: "bleu"
+            }}
+          >
+            Login
+          </NavLink>
+          <NavLink className="navItem" to="/">
+            Home
+          </NavLink>
+        </>
+      ) : (
+        <>
+          <NavLink
+            className="navItem"
+            to="/register"
+            activeStyle={{
+              fontWeight: "bold",
+              color: "bleu"
+            }}
+          >
+            {firstName}
+          </NavLink>
+          <NavLink
+            className="navItem"
+            to="/product"
+            activeStyle={{
+              fontWeight: "bold",
+              color: "bleu"
+            }}
+          >
+            product
+          </NavLink>
+          <NavLink className="navItem" to="/" onClick={logout}>
+            Logout
+          </NavLink>
+        </>
+      )}
     </div>
   );
+};
+
+Navbar.propTypes = {
+  logoutRequest: PropTypes.func,
+  firstName: PropTypes.object,
+  isLogin: PropTypes.bool
 };
 
 export default Navbar;

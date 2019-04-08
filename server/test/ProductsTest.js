@@ -51,7 +51,7 @@ describe("testing Api REST for router /products", () => {
       });
   });
 
-  it("should list a SINGLE user on /products/:id GET", done => {
+  it("should list a SINGLE product on /products/:id GET", done => {
     var newProduct = new Product({
       name: "product2",
       price: "price2",
@@ -84,7 +84,7 @@ describe("testing Api REST for router /products", () => {
     });
   });
 
-  it("should add a SINGLE user on /products POST", function(done) {
+  it("should add a SINGLE product on /products POST", function(done) {
     chai
       .request(app)
       .post("/products")

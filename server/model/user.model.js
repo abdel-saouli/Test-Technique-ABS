@@ -1,23 +1,27 @@
-var mongoose = require("mongoose");
-var bcrypt = require("bcrypt");
+let mongoose = require("mongoose");
+let bcrypt = require("bcrypt");
 
-var UserSchema = new mongoose.Schema({
+let UserSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   username: {
     type: String,
     lowercase: true,
-    unique: true,
+    // unique: true,
     required: true
   },
   password: {
     type: String,
     required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 
 UserSchema.pre("save", function(next) {
-  var user = this;
+  let user = this;
   if (this.isModified("password") || this.isNew) {
     bcrypt.genSalt(10, function(err, salt) {
       if (err) {
@@ -45,4 +49,4 @@ UserSchema.methods.comparePassword = function(pw, cb) {
   });
 };
 
-module.exports = mongoose.model("user", UserSchema);
+module.exports = mongoose.model("users", UserSchema);

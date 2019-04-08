@@ -12,9 +12,9 @@ chai.use(chaiHttp);
 describe("testing Api REST for router /users", () => {
   beforeEach(done => {
     var newUser = new User({
-      firstName: "firstName1",
-      lastName: "lastName1",
-      username: "username1",
+      firstName: "SAOULI",
+      lastName: "ABDEL",
+      username: "root",
       password: "test"
     });
 
@@ -46,16 +46,16 @@ describe("testing Api REST for router /users", () => {
         res.body[0].should.have.property("lastName");
         res.body[0].should.have.property("username");
         res.body[0].should.have.property("password");
-        res.body[0].firstName.should.equal("firstName1");
+        res.body[0].firstName.should.equal("SAOULI");
         done();
       });
   });
 
   it("should list a SINGLE user on /users/:id GET", done => {
     var newUser = new User({
-      firstName: "firstName2",
-      lastName: "lastName2",
-      username: "username2",
+      firstName: "salamo",
+      lastName: "abdselam",
+      username: "battata",
       password: "test"
     });
 
@@ -75,9 +75,9 @@ describe("testing Api REST for router /users", () => {
           res.body.should.have.property("password");
 
           res.body._id.should.be.equal(data.id);
-          res.body.firstName.should.be.equal("firstName2");
-          res.body.lastName.should.be.equal("lastName2");
-          res.body.username.should.be.equal("username2");
+          res.body.firstName.should.be.equal("salamo");
+          res.body.lastName.should.be.equal("abdselam");
+          res.body.username.should.be.equal("battata");
           done();
         });
     });
@@ -120,7 +120,7 @@ describe("testing Api REST for router /users", () => {
         chai
           .request(server)
           .put("/users/" + res.body[0]._id)
-          .send({ firstName: "firstName2" })
+          .send({ firstName: "salamo" })
           .end((error, response) => {
             response.should.have.status(200);
             response.should.be.json;
@@ -128,7 +128,7 @@ describe("testing Api REST for router /users", () => {
             response.body.should.be.a("object");
             response.body.should.have.property("firstName");
             response.body.should.have.property("_id");
-            response.body.firstName.should.equal("firstName2");
+            response.body.firstName.should.equal("salamo");
             done();
           });
       });
@@ -148,7 +148,7 @@ describe("testing Api REST for router /users", () => {
             response.body.should.be.a("object");
             response.body.should.have.property("firstName");
             response.body.should.have.property("_id");
-            response.body.firstName.should.equal("firstName1");
+            response.body.firstName.should.equal("SAOULI");
             done();
           });
       });

@@ -1,10 +1,21 @@
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
 let Product = require("../model/product.model");
+let passport = require("../config/passport.config");
+
+router.get(
+  "/me",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    return res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email
+    });
+  }
+);
 
 router.post("/", (req, res) => {
-  console.log("mon req.body : ", req.body);
-
   let product = new Product(req.body);
   product
     .save()

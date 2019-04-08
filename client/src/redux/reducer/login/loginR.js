@@ -1,4 +1,5 @@
 import { loginState } from "../../initState";
+import AuthService from "../../../auth/auth";
 
 export const loginRducer = (state = loginState, action) => {
   switch (action.type) {
@@ -6,9 +7,11 @@ export const loginRducer = (state = loginState, action) => {
       return {
         ...state,
         isLogin: true,
-        user: action.data.data
+        token: action.data.data,
+        user: AuthService.getProfile().user
       };
     case "LOGOUT_REQUEST":
+      AuthService.logout();
       return loginState;
 
     default:

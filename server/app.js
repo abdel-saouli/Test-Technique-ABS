@@ -38,10 +38,27 @@ app.post("/authenticate", function(req, res) {
       } else {
         user.comparePassword(req.body.password, function(err, isMatch) {
           if (isMatch && !err) {
-            const token = jwt.sign({ user: "test" }, config.jwtSecret, {
-              expiresIn: 86400
-            });
-            res.status(200).json({ success: true, token });
+            const payload = {
+              id: user.id,
+              firstName: user.firstName,
+              user
+            };
+            const token = jwt.sign(
+              payload,
+              config.jwtSecret,
+              {
+                expiresIn: 86400
+              },
+              (err, token) => {
+                if (err) console.error("There is some error in token", err);
+                else {
+                  res.json({
+                    success: true,
+                    token: `Bearer ${token}`
+                  });
+                }
+              }
+            );
           } else {
             res
               .status(401)

@@ -1,0 +1,53 @@
+[33mcommit 2b9f5ecac6e22d60bcca93f092a75cc245e3ecad[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: ABSAOULI <abdelwahhab.saouli@zsoft-consulting.com>
+Date:   Mon Apr 8 11:08:15 2019 +0200
+
+    add authenticate test
+
+[33mcommit bb578bff8580895710f6f82eb1b8eaeb730af358[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: ABSAOULI <abdelwahhab.saouli@zsoft-consulting.com>
+Date:   Wed Apr 3 21:21:49 2019 +0200
+
+    Added The JWT authentication method, and encrypted the password in the database.
+
+[33mcommit 8b3af68e1818c4a9ccd35aa240616513da3d75fb[m
+Author: ABSAOULI <abdelwahhab.saouli@zsoft-consulting.com>
+Date:   Wed Apr 3 20:54:49 2019 +0200
+
+    fixed a bug in login and product saga and reducer
+
+[33mcommit 6cf9af5b8db0306a9c8cccea322ce38f9086dc3a[m
+Author: ABSAOULI <abdelwahhab.saouli@zsoft-consulting.com>
+Date:   Wed Apr 3 20:38:28 2019 +0200
+
+    added redux, redux saga and the login view with state management
+
+[33mcommit 079c2264da9199cf6650ac19a44f242c0bc41390[m
+Author: ABSAOULI <abdelwahhab.saouli@zsoft-consulting.com>
+Date:   Wed Apr 3 19:32:35 2019 +0200
+
+    initial commit creact-react-app
+
+[33mcommit 865e559a7d5c979258944b86084115e14c800611[m
+Author: ABSAOULI <abdelwahhab.saouli@zsoft-consulting.com>
+Date:   Wed Apr 3 19:21:33 2019 +0200
+
+    added product resource and tests, and corrected a bug in users update
+
+[33mcommit a03bdd15aa3c15e36ef9cfb6af246df924d63590[m
+Author: ABSAOULI <abdelwahhab.saouli@zsoft-consulting.com>
+Date:   Wed Apr 3 17:32:12 2019 +0200
+
+    added authentication with local strategy and session
+
+[33mcommit d52b67fcd7280f2df70933137e53ebb0749bf9a6[m
+Author: ABSAOULI <abdelwahhab.saouli@zsoft-consulting.com>
+Date:   Wed Apr 3 17:05:46 2019 +0200
+
+    Added User Model/Tests/Routes using TDD and separated the test db from the dev db
+
+[33mcommit 458fa0e3795ac8c7f2de37766635bf573635072c[m
+Author: ABSAOULI <abdelwahhab.saouli@zsoft-consulting.com>
+Date:   Wed Apr 3 14:23:24 2019 +0200
+
+    initial commit: Generated with Express Generator

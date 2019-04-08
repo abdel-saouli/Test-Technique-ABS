@@ -5,9 +5,9 @@ import { loadProductSuccess } from "../../actions/product.action";
 function* loadProductRequest(action) {
   try {
     const res = yield call(Axios.get, `/products/${action.id}`);
-    console.log("ma response : ", res);
-
-    yield put(loadProductSuccess(res.data));
+    if (res.data) {
+      yield put(loadProductSuccess(res.data));
+    }
   } catch (error) {
     console.log("error : ", error);
   }

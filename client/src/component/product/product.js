@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useMappedState, useDispatch } from "redux-react-hook";
 import { loadProduct } from "../../redux/actions/product.action";
 
@@ -9,7 +9,6 @@ const mapState = state => {
 };
 
 const Product = () => {
-  const [product, setProduct] = useState([]);
   const Dispatch = useDispatch();
   const { idUser } = useMappedState(mapState);
 
