@@ -24,7 +24,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "chai-passport-strategy": "^1.0.1",
-    "mocha": "^6.0.2",
+    "mocha": "^10.2.0",
     "sinon": "^7.3.1"
   }
 }
